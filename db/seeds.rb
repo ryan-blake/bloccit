@@ -1,4 +1,8 @@
 include RandomData
+ #assign..
+
+ Post.find_or_create_by(title: "Unique Title!",
+ body: "this is the most amazingly unique post body ever!")
 
  #create posts
  50.times do
