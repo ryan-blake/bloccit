@@ -12,7 +12,9 @@ end
 # #2
 group :development do
   gem 'sqlite3'
+  gem 'pry-rails'
 end
+
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
