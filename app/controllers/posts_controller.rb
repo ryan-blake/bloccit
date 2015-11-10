@@ -2,18 +2,24 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    @posts.first.title = "spam"
-    @posts.first.save!
+      @posts.each_with_index do |post, index|
+        if index % 5 == 0
+          post.title = "Spam"
+        end
+      end
 
-    # post.first.update_attributes(title: "spam")
-  end
+      #@posts.first.title = "spam"
+      #@posts.first.save!
 
-  def show
-  end
+      # post.first.update_attributes(title: "spam")
+    end
 
-  def new
-  end
+    def show
+    end
 
-  def edit
+    def new
+    end
+
+    def edit
+    end
   end
-end
