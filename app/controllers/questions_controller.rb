@@ -1,6 +1,6 @@
 class QuestionController < ApplicationController
   def new
-    @question = question.new
+    @question = Question.new
   end
 
   def create
@@ -20,7 +20,7 @@ class QuestionController < ApplicationController
   end
 
   def index
-    @question = question.all
+    @question = Question.all
   end
 
   def show
