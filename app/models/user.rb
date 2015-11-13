@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # #2
   before_save { self.email = email.downcase }
+  before_save { fix_user }
 
   # #3
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -12,12 +13,22 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, allow_blank: true
   # #6
   validates :email,
-            presence: true,
-            uniqueness: { case_sensitive: false },
-            length: { minimum: 3, maximum: 100 },
-            format: { with: EMAIL_REGEX }
+  presence: true,
+  uniqueness: { case_sensitive: false },
+  length: { minimum: 3, maximum: 100 },
+  format: { with: EMAIL_REGEX }
 
   # #7
   has_secure_password
 
+
+  def fix_user
+    if name
+      name_array = []
+      name.split.each do | part |
+        name_array << part.capitalize
+      end
+      self.name = name_array.join(" ")
+    end
+  end
 end
