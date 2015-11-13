@@ -1,26 +1,38 @@
 include RandomData
 
- #create posts
+#create questions
+50.times do
+  #1
+  Question.create!(
+  #2
+  title: RandomData.random_sentence,
+  body: RandomData.random_paragraph
+  resolved: true
+  )
+end
+questions = Question.all
+
+ #create questions
  50.times do
    #1
-   Post.create!(
+   Question.create!(
    #2
    title: RandomData.random_sentence,
    body: RandomData.random_paragraph
    )
  end
- posts = Post.all
+ questions = Question.all
 
  # Create comments
  #3
  100.times do
    Comment.create!(
     #4
-    post: posts.sample,
+    question: questions.sample,
     body: RandomData.random_paragraph
    )
  end
 
  puts "Send finished"
- puts "#{Post.count} posts created"
+ puts "#{Question.count} questions created"
  puts "#{Comment.count} comments created"
