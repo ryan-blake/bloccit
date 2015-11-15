@@ -1,0 +1,2 @@
+class SponsoredPostController < ApplicationController
+end
