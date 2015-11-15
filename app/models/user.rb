@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :posts
   # #2
   before_save { self.email = email.downcase }
 
@@ -12,10 +13,10 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, allow_blank: true
   # #6
   validates :email,
-            presence: true,
-            uniqueness: { case_sensitive: false },
-            length: { minimum: 3, maximum: 100 },
-            format: { with: EMAIL_REGEX }
+  presence: true,
+  uniqueness: { case_sensitive: false },
+  length: { minimum: 3, maximum: 100 },
+  format: { with: EMAIL_REGEX }
 
   # #7
   has_secure_password
