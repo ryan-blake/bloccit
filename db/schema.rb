@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 20151113175732) do
     t.string   "name"
     t.boolean  "public",      default: true
     t.text     "description"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
