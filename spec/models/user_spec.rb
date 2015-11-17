@@ -40,6 +40,10 @@ RSpec.describe User, type: :model do
     it "should respond to member?" do
       expect(user).to respond_to(:member?)
     end
+
+    it "should respond to moderator?" do
+      expect(user).to respond_to(:moderator?)
+    end
   end
 
   describe "roles" do
@@ -74,7 +78,7 @@ RSpec.describe User, type: :model do
       end
     end
   end
-  
+
   ####INVALID USER TESTING
 
   describe "invalid user" do
