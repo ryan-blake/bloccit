@@ -1,4 +1,11 @@
 include RandomData
+  ##labels
+  5.times do
+   Label.create!(
+    name: RandomData.random_name
+  )
+  labels = Label.all
+end
 
 
 # Create Users
@@ -61,6 +68,7 @@ topics = Topic.all
 
 
  puts "Send finished"
+ puts "#{Label.count} labels created"
  puts "#{User.count} users created"
  puts "#{Topic.count} topics created"
  puts "#{Post.count} posts created"

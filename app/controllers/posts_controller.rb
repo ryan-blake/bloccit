@@ -12,16 +12,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new
-    @post.title = params[:post][:title]
-    @post.body = params[:post][:body]
     @topic = Topic.find(params[:topic_id])
-    @post.topic = @topic
     @post = @topic.posts.build(post_params)
     @post.user = current_user
+
     if @post.save
+      @post.labels = Label.update_labels(params[:post][:labels])
       flash[:notice] = "Post was saved."
-# #36
       redirect_to [@topic, @post]
     else
       flash[:error] = "There was an error saving the post. Please try again."
@@ -38,8 +35,9 @@ class PostsController < ApplicationController
     @post.assign_attributes(post_params)
 
     if @post.save
+      @post.labels = Label.update_labels(params[:post][:labels])
       flash[:notice] = "Post was updated."
-# #37
+      # #37
       redirect_to [@post.topic, @post]
     else
       flash[:error] = "There was an error saving the post. Please try again."
@@ -52,8 +50,8 @@ class PostsController < ApplicationController
 
     if @post.destroy
       flash[:notice] = "\"#{@post.title}\" was deleted successfully."
-# #38
-       redirect_to @post.topic
+      # #38
+      redirect_to @post.topic
     else
       flash[:error] = "There was an error deleting the post."
       render :show
@@ -62,7 +60,7 @@ class PostsController < ApplicationController
 
   private
 
- def post_params
-   params.require(:post).permit(:title, :body)
- end
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
 end
