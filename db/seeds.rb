@@ -38,7 +38,7 @@ topics = Topic.all
  #3
  100.times do
    Comment.create!(
-    #4
+    user: users.sample,
     post: posts.sample,
     body: RandomData.random_paragraph
    )
@@ -59,7 +59,7 @@ topics = Topic.all
    password: 'helloworld'
  )
 
- 
+
  puts "Send finished"
  puts "#{User.count} users created"
  puts "#{Topic.count} topics created"
