@@ -8,7 +8,7 @@ class Label < ActiveRecord::Base
 
  def self.update_labels(label_string)
 # #24
-   return false if label_string.blank?
+   return Label.none if label_string.blank?
 
 # #25
 

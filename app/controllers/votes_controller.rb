@@ -39,12 +39,12 @@ class VotesController < ApplicationController
   end
 
   private
-  def update_vote(new_values)
-    @post = Post.find(params[:id])
+  def update_vote(new_value)
+    @post = Post.find(params[:post_id])
     @vote = @post.votes.where(user_id: current_user.id).first
 
     if @vote
-      @vote.update_attribute(:value, new_value)
+      @vote.update_attributes(value: new_value)
     else
       @vote = current_user.votes.create(value: new_value, post: @post)
     end
