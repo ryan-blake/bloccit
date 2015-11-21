@@ -15,6 +15,8 @@ end
 # #2
 group :development do
   gem 'sqlite3'
+  gem 'web-console'
+  gem 'annotate'
 end
 
 group :development, :test do
