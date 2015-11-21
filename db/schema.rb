@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120191522) do
+ActiveRecord::Schema.define(version: 20151121163834) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "body"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 20151120191522) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "favorites", ["post_id"], name: "index_favorites_on_post_id"
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
   create_table "labelings", force: :cascade do |t|
     t.integer  "label_id"
@@ -70,21 +80,6 @@ ActiveRecord::Schema.define(version: 20151120191522) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "rates", force: :cascade do |t|
-    t.integer "severity"
-  end
-
-  create_table "ratings", force: :cascade do |t|
-    t.integer  "rate_id"
-    t.integer  "rateable_id"
-    t.string   "rateable_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "ratings", ["rate_id"], name: "index_ratings_on_rate_id"
-  add_index "ratings", ["rateable_type", "rateable_id"], name: "index_ratings_on_rateable_type_and_rateable_id"
 
   create_table "topics", force: :cascade do |t|
     t.string   "name"
