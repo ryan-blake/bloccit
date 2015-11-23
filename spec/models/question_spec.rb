@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Question, type: :model do
+  let(:topic) { create(:topic) }
+  let(:user) { create(:user) }
+  let(:post) { create(:post) }
+
   let(:question) { Question.new(title: "New Question Title", body: "New Question Body", resolved: false)}
 
 

@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 gem 'bootstrap-sass'
-gem 'shoulda'
 #encrypting passwords
 gem 'bcrypt'
 
@@ -21,6 +20,8 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
+  gem 'shoulda'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
