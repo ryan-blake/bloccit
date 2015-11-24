@@ -89,7 +89,7 @@ RSpec.describe Post, type: :model do
       end
 
       it "calls  #create_vote when a post is created" do
-        post = topic.posts.new(Title: RandomData.random_sentence, body: RandomData.random_sentence, user: user)
+        post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_sentence, user: user)
         expect(post).to receive(:create_vote)
         post.save
       end
