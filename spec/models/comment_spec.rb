@@ -6,8 +6,7 @@ RSpec.describe Comment, type: :model do
    let(:topic) { create(:topic) }
    let(:user) { create(:user) }
    let(:post) { create(:post) }
-  let(:comment) { Comment.create!(body: 'Comment body', post: post, user: user) }
-
+   let(:comment) { create(:comment)  }
   it { should belong_to(:post) }
   it { should belong_to(:user) }
 
@@ -22,12 +21,11 @@ RSpec.describe Comment, type: :model do
   end
 
   describe "after_create" do
-    # #22
+
     before do
       @another_comment = Comment.new(body: 'Comment Body', post: post, user: user)
     end
 
-    # #23
     it "sends an email to users who have favorited the post" do
       favorite = User.favorites.create(post: post)
       expect(FavoriteMailer).to receive(:new_comment).with(user, post, @another_comment).and_return(double(deliver_now: true))

@@ -1,7 +1,7 @@
 include RandomData
 
 FactoryGirl.define do
-  factory :topic do
+  factory :label do
     name RandomData.random_name
     labelings
     topics
