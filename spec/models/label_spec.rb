@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: labels
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'rails_helper'
 include RandomData
 
@@ -8,7 +18,6 @@ RSpec.describe Label, type: :model do
   let(:label) { Label.create!(name: 'Label') }
   let(:label2) { Label.create!(name: 'Label2') }
 ##
-it { should belong_to :labelable }
 it { should have_many :labelings }
   # #2
   it { should have_many(:topics).through(:labelings) }

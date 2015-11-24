@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  body       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  topic_id   :integer
+#  user_id    :integer
+#  rank       :float
+#
+
 require 'rails_helper'
 include RandomData
 # The migration is written in Ruby. The migration file is actually a class named CreatePosts. When we run the migration, the change method calls the create_table method. create_table takes block which specifies the attributes we want our table to possess.
@@ -84,9 +98,7 @@ RSpec.describe Post, type: :model do
     end
 
     describe "#create_vote" do
-      it "sets post_up vote to 1" do
-        expect(post.up_vote).to eq(1)
-      end
+    
 
       it "calls  #create_vote when a post is created" do
         post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_sentence, user: user)

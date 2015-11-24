@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id         :integer          not null, primary key
+#  body       :text
+#  post_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer
+#
+
 require 'rails_helper'
 include RandomData
 
@@ -29,7 +41,7 @@ RSpec.describe Comment, type: :model do
 
     # #23
     it "sends an email to users who have favorited the post" do
-      favorite = User.favorites.create(post: post)
+      favorite = user.favorites.create(post: post)
       expect(FavoriteMailer).to receive(:new_comment).with(user, post, @another_comment).and_return(double(deliver_now: true))
 
       @another_comment.save
