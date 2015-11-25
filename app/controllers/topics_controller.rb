@@ -4,11 +4,16 @@ class TopicsController < ApplicationController
 
 
   def index
-    @topics = Topic.all
+    @topics = Topic.visible_to(current_user)
   end
 
   def show
     @topic = Topic.find(params[:id])
+
+    unless @topic.public || current_user
+        flash[:error] = "You must be signed in to view private topics."
+        redirect_to new_session_path
+      end
   end
 
   def new
@@ -16,17 +21,17 @@ class TopicsController < ApplicationController
   end
 
   def create
-   @topic = Topic.new(topic_params)
+    @topic = Topic.new(topic_params)
 
-   if @topic.save
-# #20
-     @topic.labels = Label.update_labels(params[:topic][:labels])
-     redirect_to @topic, notice: "Topic was saved successfully."
-   else
-     flash[:error] = "Error creating topic. Please try again."
-     render :new
-   end
- end
+    if @topic.save
+      # #20
+      @topic.labels = Label.update_labels(params[:topic][:labels])
+      redirect_to @topic, notice: "Topic was saved successfully."
+    else
+      flash[:error] = "Error creating topic. Please try again."
+      render :new
+    end
+  end
 
   def edit
     @topic = Topic.find(params[:id])
