@@ -4,6 +4,7 @@ module PostsHelper
   end
 
   def user_has_no_post(user)
-    puts "#{user.name} has no posts yet"
-  end
+    unless User.comments.present? || User.posts.present?
+      flash[:error]="User has no favorited posts or comments"
+    end
 end
