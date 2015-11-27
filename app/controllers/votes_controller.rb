@@ -3,14 +3,18 @@ class VotesController < ApplicationController
   before_action :require_sign_in
 
   def up_vote
-    update_vote(1)
+    @update_vote(1)
     redirect_to :back
   end
 
   def down_vote
-    update_vote(-1)
+    @update_vote(-1)
     redirect_to :back
   end
+
+  respond_to do |format|
+    format.html
+    format.js
 
   private
   def update_vote(new_value)

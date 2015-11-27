@@ -1,0 +1,6 @@
+<% if @up_vote.destroyed? %>
+  $('#up_vote-' +<%= @votes.id %>).hide();
+<% elsif @down_vote.destroyed? %>
+$('#down_vote-' +<%= @votes.id %>).hide();
+<% end %>
+<% end %>
