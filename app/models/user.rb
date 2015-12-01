@@ -18,11 +18,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, if: "password_digest.nil?"
   validates :password, length: { minimum: 6 }, allow_blank: true
   # #6
-  validates :email,
-  presence: true,
-  uniqueness: { case_sensitive: false },
-  length: { minimum: 3, maximum: 100 },
-  format: { with: EMAIL_REGEX }
+  validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 100 }, format: { with: EMAIL_REGEX }
 
   # #7
   has_secure_password

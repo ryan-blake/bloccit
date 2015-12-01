@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
     post '/up-vote' => 'votes#up_vote', as: :up_vote
     post '/down-vote' => 'votes#down_vote', as: :down_vote
+
   end
 
 
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   resources :labels, only: [:show]
 
   get  'about' => 'welcome#about'
+
   root to: 'welcome#index'
 
 
@@ -29,6 +31,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:index, :show]
       resources :topics, only: [:index, :show]
+
     end
   end
 end
