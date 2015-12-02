@@ -28,6 +28,21 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       post :create, user: { name: new_user.name, email: new_user.email, password: new_user.password }
       expect(response).to have_http_status(401)
     end
+
+    it "PUT update returns http unauthenticated" do
+      put :update, id: my_topic.id, topic: {name: "Topic Name", description: "Topic Description"}
+      expect(response).to have_http_status(401)
+    end
+
+    it "POST create returns http unauthenticated" do
+      post :create, topic: {name: "Topic Name", description: "Topic Description"}
+      expect(response).to have_http_status(401)
+    end
+
+    it "DELETE destroy returns http unauthenticated" do
+      delete :destroy, id: my_topic.id
+      expect(response).to have_http_status(401)
+    end
   end
 
   # #13
@@ -56,6 +71,22 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       new_user = build(:user)
       post :create, user: { name: new_user.name, email: new_user.email, password: new_user.password }
       expect(response).to have_http_status(403)
+    end
+
+
+    it "PUT update returns http unauthenticated" do
+      put :update, id: my_topic.id, topic: {name: "Topic Name", description: "Topic Description"}
+      expect(response).to have_http_status(401)
+    end
+
+    it "POST create returns http unauthenticated" do
+      post :create, topic: {name: "Topic Name", description: "Topic Description"}
+      expect(response).to have_http_status(401)
+    end
+
+    it "DELETE destroy returns http unauthenticated" do
+      delete :destroy, id: my_topic.id
+      expect(response).to have_http_status(401)
     end
   end
 
