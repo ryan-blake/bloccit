@@ -5,12 +5,12 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   def index
     posts = Post.all
-    render json: topics.to_json, status: 200
+    render json: posts.to_json, status: 200
   end
 
   def show
-    post = Topic.find(params[:id])
-     render json: topic.to_json, status: 200
+    post = Post.find(params[:id])
+     render json: post.as_json(include: :comments), status: 200
 
   end
 end
