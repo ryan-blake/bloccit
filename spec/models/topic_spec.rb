@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: topics
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  public      :boolean          default(TRUE)
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 require 'rails_helper'
 include RandomData
 
