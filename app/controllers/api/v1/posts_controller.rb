@@ -1,13 +1,24 @@
 class Api::V1::PostsController < Api::V1::BaseController
-  before_filter :authenticate_user
-  before_filter :authorize_user
 
+  before_filter :authenticate_user, except: [:index, :show]
+  before_filter :authorize_user, except: [:index, :show]
+
+  def index
+    posts = Post.all
+    render json: posts.to_json, status: 200
+  end
+
+  def show
+    post = Post.find(params[:id])
+    render json: post.as_json(include: [:comments, :favorites, :votes]), status: 200
+
+  end
 
   def update
     post = Post.find(params[:id])
 # 48
     if post.update_attributes(post_params)
-      render json: post.as_json(include: :comments, :favorites, :votes), status: 200
+      render json: post.as_json(include: [:comments, :favorites, :votes]), status: 200
     else
       render json: {error: "Post update failed", status: 400}, status: 400
     end
@@ -44,4 +55,5 @@ class Api::V1::PostsController < Api::V1::BaseController
   def post_params
     params.require(:post).permit(:title, :body, :rank)
   end
+# #22
 end

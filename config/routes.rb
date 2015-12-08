@@ -34,8 +34,8 @@ Rails.application.routes.draw do
       resources :topics, except: [:edit, :new] do
         post 'create_post' => 'posts#create'
       end
-      resources :posts, only: [:update, :destroy]
-
+      resources :posts, only: [:update, :destroy, :show]
+      resources :comments, only: [:index, :show]
     end
   end
 end
